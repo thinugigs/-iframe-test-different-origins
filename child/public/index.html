@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>child - iframe different origin</title>
+</head>
+<body>
+  <h1>Child</h1>
+  <button onclick="clickMe()">Click me to update parent app</button>
+  <br/><br/>
+  <div id='divChild'></div>
+</body>
+</html>
+
+<script>
+  window.addEventListener("message", function(event) {
+    document.getElementById('divChild').innerText = 'Parent button Clicked'
+  });
+  function clickMe() {
+    parent.postMessage("", "*");
+  }
+</script>

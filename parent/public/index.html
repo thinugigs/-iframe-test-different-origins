@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>parent - iframe different origin</title>
+</head>
+<body>
+    <h1>Parent</h1>
+    <button onclick="clickMe()">Click me to update child app</button>
+    <br/><br/>
+    <iframe id="iframeId" src="https://thinugigs-iframe-test-different-origin-child.firebaseapp.com"></iframe>
+    <br/><br/>
+    <div id='divParent'></div>
+</body>
+</html>
+
+<script>
+    window.addEventListener("message", function(event) {
+        document.getElementById('divParent').innerText = 'Child button Clicked'
+    });
+    function clickMe() {
+        const iframe = document.getElementById('iframeId').contentWindow;
+        iframe.postMessage("", "*");
+    }
+</script>
